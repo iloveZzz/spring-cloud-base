@@ -1,0 +1,17 @@
+.idea
+target/*
+*/*.iml
+
+.gitignore
+.mvn/
+logs/
+ms-base-admin-auth/.gitignore
+ms-base-admin-auth/.mvn/
+ms-base-config-server/.gitignore
+ms-base-config-server/.mvn/
+ms-base-eureka-server/.gitignore
+ms-base-eureka-server/.mvn/
+ms-base-gateway/.gitignore
+ms-base-gateway/.mvn/
+ms-base-sleuth-zipkin/.gitignore
+ms-base-sleuth-zipkin/.mvn/
