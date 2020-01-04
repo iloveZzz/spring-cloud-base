@@ -9,16 +9,33 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yss.report</groupId>
-    <artifactId>spring-yss-rp-starter</artifactId>
+    <artifactId>spring-yss-cloud-starter</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+    </properties>
     <modules>
         <module>ms-base-config-server</module>
         <module>ms-base-eureka-server</module>
         <module>ms-base-admin-auth</module>
         <module>ms-base-gateway</module>
         <module>ms-base-sleuth-zipkin</module>
+        <module>ms-base-nacos-gateway</module>
+        <module>ms-base-nacos-config</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>

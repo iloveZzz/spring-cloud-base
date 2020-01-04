@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: nacos-gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 169.254.118.174:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: nacos-config-server
+          uri: lb://nacos-config-server
+          predicates:
+            - Path=/nacos-config-server/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 8064
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

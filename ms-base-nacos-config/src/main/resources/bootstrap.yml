@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: nacos-config-server
+  cloud:
+    nacos:
+      config:
+        server-addr: 169.254.118.174:8848
+      discovery:
+        server-addr: 169.254.118.174:8848
+server:
+  port: 8063
