@@ -1,11 +1,18 @@
 spring:
   application:
-    name: nacos-config-server
+    name: ${artifactId}
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        namespace: ${config.namespace}
+        refreshable-dataids: common.yml
+        server-addr: ${config.server-addr}
+        shared-dataids: common.yml
+        file-extension: yml
       discovery:
-        server-addr: 127.0.0.1:8848
+        namespace: ${discovery.namespace}
+        server-addr: ${discovery.server-addr}
+  profiles:
+    active: dev
 server:
-  port: 8063
+  port: 8754

@@ -1,22 +1,30 @@
 spring:
   application:
-    name: nacos-gateway-server
+    name: ${artifactId}
   cloud:
     nacos:
+      config:
+        namespace: ${config.namespace}
+        refreshable-dataids: common.yml
+        server-addr: ${config.server-addr}
+        shared-dataids: common.yml
+        file-extension: yml
       discovery:
-        server-addr: 127.0.0.1:8848
+        namespace: ${discovery.namespace}
+        server-addr: ${discovery.server-addr}
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
-        - id: nacos-config-server
-          uri: lb://nacos-config-server
+        - id: ms-base-nacos-config
+          uri: lb://ms-base-nacos-config
           predicates:
-            - Path=/nacos-config-server/**
+            - Path=/ms-base-nacos-config/**
           filters:
             - StripPrefix=1
-
+  profiles:
+    active: dev
 server:
   port: 8064
 management:

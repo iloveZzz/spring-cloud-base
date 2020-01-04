@@ -15,6 +15,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+        <spring-alibaba-cloud.version>2.1.1.RELEASE</spring-alibaba-cloud.version>
     </properties>
     <modules>
         <module>ms-base-config-server</module>
@@ -25,6 +26,29 @@
         <module>ms-base-nacos-gateway</module>
         <module>ms-base-nacos-config</module>
     </modules>
+    <profiles>
+        <profile>
+            <!--本地-->
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--当前环境-->
+                <profile.name>local</profile.name>
+                <!--Nacos配置中心地址-->
+                <config.server-addr>127.0.0.1:8848</config.server-addr>
+                <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
+                <config.namespace></config.namespace>
+                <!--Nacos服务发现地址-->
+                <discovery.server-addr>127.0.0.1:8848</discovery.server-addr>
+                <!--Nacos服务发现命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
+                <discovery.namespace></discovery.namespace>
+                <!--Logstash日志收集地址-->
+                <logstash.destination>127.0.0.1:5000</logstash.destination>
+            </properties>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -34,6 +58,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring-alibaba-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-alibaba-cloud.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -42,7 +76,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
