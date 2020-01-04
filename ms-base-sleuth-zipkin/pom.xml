@@ -6,7 +6,7 @@
         <groupId>com.yss.report</groupId>
         <artifactId>spring-yss-cloud-starter</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yss.report.sleuth</groupId>
     <artifactId>ms-base-sleuth-zipkin</artifactId>
